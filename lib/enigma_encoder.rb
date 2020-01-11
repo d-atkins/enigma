@@ -18,7 +18,7 @@ class EnigmaEncoder
     end
   end
 
-  def caesar_cipher_shift(character, shift)
+  def caesar_shift(character, shift)
     index = @whitelist.index(character.downcase)
     index ? @whitelist.rotate(shift)[index] : character
   end
@@ -32,7 +32,7 @@ class EnigmaEncoder
     enigma_shifts = shifts(keys(key), offset(date)).rotate(-1)
     encryption = message.split('').map do |character|
       enigma_shifts = enigma_shifts.rotate
-      caesar_cipher_shift(character, enigma_shifts[0])
+      caesar_shift(character, enigma_shifts[0])
     end.join
     encryption_info(encryption, key, date)
   end
