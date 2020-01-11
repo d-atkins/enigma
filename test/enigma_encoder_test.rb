@@ -32,8 +32,9 @@ class EnigmaEncoderTest < Minitest::Test
     assert_equal " ", @encoder.caesar_shift("a", -1)
     assert_equal "q", @encoder.caesar_shift("Q", 54)
     assert_equal ",", @encoder.caesar_shift(",", 3)
-    assert_equal "!", @encoder.caesar_shift("!", 7)
-    assert_equal "?", @encoder.caesar_shift("?", 800)
+    assert_equal "!", @encoder.caesar_shift("!", -7)
+    assert_equal "d", @encoder.caesar_shift("z", 815)
+    assert_equal "g", @encoder.caesar_shift("g", 0)
   end
 
   def test_it_can_return_encryption_info
