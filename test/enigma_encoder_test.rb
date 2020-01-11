@@ -35,4 +35,13 @@ class EnigmaEncoderTest < Minitest::Test
     assert_equal "!", @encoder.caesar_cipher_shift("!", 7)
     assert_equal "?", @encoder.caesar_cipher_shift("?", 800)
   end
+
+  def test_it_can_return_encryption_info
+    expected = {
+      encryption: "ai",
+      key: "02715",
+      date: "040895"
+    }
+    assert_equal expected, @encoder.encryption_info("ai", "02715", "040895")
+  end
 end
