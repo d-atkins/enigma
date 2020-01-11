@@ -22,4 +22,10 @@ class EnigmaEncoder
     index = @whitelist.index(character.downcase)
     index ? @whitelist.rotate(shift)[index] : character
   end
+
+  def encryption_info(encryption, key, date)
+    {encryption: encryption, key: key, date: date}
+  end
+
+
 end
