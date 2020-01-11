@@ -22,7 +22,7 @@ class EnigmaEncoderTest < Minitest::Test
   def test_it_can_set_shift
     keys = @encoder.keys("02715")
     offset = @encoder.offset("040895")
-    
-    assert_equal [2, 27, 73, 20], @encoder.shift(keys, offset)
+
+    assert_equal [3, 27, 73, 20], @encoder.shift(keys, offset)
   end
 end
