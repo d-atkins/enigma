@@ -27,5 +27,13 @@ class EnigmaEncoder
     {encryption: encryption, key: key, date: date}
   end
 
-
+  #possible to-do: make a "run_message_through_caesar_shifts" super method
+  def encrypt(message, key = nil, date = nil)
+    enigma_shifts = shifts(keys(key), offset(date)).rotate(-1)
+    encryption = message.split('').map do |character|
+      enigma_shifts = enigma_shifts.rotate
+      caesar_cipher_shift(character, enigma_shifts[0])
+    end.join
+    encryption_info(encryption, key, date)
+  end
 end
