@@ -44,4 +44,13 @@ class EnigmaEncoderTest < Minitest::Test
     }
     assert_equal expected, @encoder.encryption_info("ai", "02715", "040895")
   end
+
+  def test_it_can_encrypt
+    expected = {
+      encryption: "keder ohulw",
+      key: "02715",
+      date: "040895"
+    }
+    assert_equal expected, @encoder.encrypt("hello world", "02715", "040895")
+  end
 end
