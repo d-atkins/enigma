@@ -20,7 +20,7 @@ class EnigmaEncoderTest < Minitest::Test
   end
 
   def test_it_can_make_key_hash
-    assert_equal ({a:1, b:2, c:3, d:4}), @encoder.key_hash("1234")
-    assert_equal ({a:15, b:26, c:37, d:48}), @encoder.key_hash("15263748")
+    assert_equal ({a: '1', b: '2', c: '3', d: '4'}), @encoder.key_hash("1234")
+    assert_equal ({a: '15', b: '26', c: '37', d: '48'}), @encoder.key_hash("15263748")
   end
 end
