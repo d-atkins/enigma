@@ -27,9 +27,12 @@ class EnigmaEncoderTest < Minitest::Test
   end
 
   def test_it_can_caesar_cipher_shift
-    assert_equal "b", @encoder.caesar_cipher_shift("a", 1)
-    assert_equal "d", @encoder.caesar_cipher_shift("D", 3)
+    assert_equal "m", @encoder.caesar_cipher_shift("l", 1)
+    assert_equal "b", @encoder.caesar_cipher_shift("Z", 3)
     assert_equal " ", @encoder.caesar_cipher_shift("a", -1)
-    assert_equal "a", @encoder.caesar_cipher_shift("a", 54)
+    assert_equal "q", @encoder.caesar_cipher_shift("Q", 54)
+    assert_equal ",", @encoder.caesar_cipher_shift(",", 3)
+    assert_equal "!", @encoder.caesar_cipher_shift("!", 7)
+    assert_equal "?", @encoder.caesar_cipher_shift("?", 800)
   end
 end
