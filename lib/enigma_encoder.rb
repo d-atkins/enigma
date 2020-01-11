@@ -13,9 +13,7 @@ class EnigmaEncoder
   end
 
   def shifts(keys, offset)
-    keys.map.with_index do |key, index|
-      key.to_i + offset[index].to_i
-    end
+    keys.zip(offset).map {|key, off| key.to_i + off.to_i }
   end
 
   def caesar_shift(character, shift)
