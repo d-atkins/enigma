@@ -37,9 +37,11 @@ class CryptoToolTest < Minitest::Test
     assert_equal "g", @crypto_tool.caesar_shift("g", 0)
   end
 
-  def test_it_can_shift_a_message
-    assert_equal "ifmmp,axpsme!", @crypto_tool.shift_message("Hello, world!", 1)
-    assert_equal "gdkkn,zvnqkc!", @crypto_tool.shift_message("Hello, world!", -1)
-    assert_equal "hello, world!", @crypto_tool.shift_message("Hello, world!", 0)
+  def test_it_can_caesar_shift_all_characters_of_a_message
+    shifts = [3, 27, 73, 20]
+    unshifts = [-3, -27, -73, -20]
+    
+    assert_equal "keder ohulw", @crypto_tool.shift_all("hello world", shifts)
+    assert_equal "hello world", @crypto_tool.shift_all("keder ohulw", unshifts)
   end
 end
