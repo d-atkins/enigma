@@ -1,5 +1,7 @@
-require_relative "test_helper"
-require "./lib/encoder"
+require_relative 'test_helper'
+require './lib/encoder'
+require 'time'
+require 'mocha/minitest'
 
 class EncoderTest < Minitest::Test
 
@@ -54,5 +56,16 @@ class EncoderTest < Minitest::Test
       date: "040895"
     }
     assert_equal expected, @encoder.encrypt("hello world", "02715", "040895")
+  end
+
+  def test_it_can_with_no_date_argument
+    dummy_time = Time.parse("2020-1-12")
+    Time.stubs(:now).returns(dummy_time)
+    expected = {
+      encryption: "nib udmcxpu",
+      key: "02715",
+      date: "120120"
+    }
+    assert_equal expected, @encoder.encrypt("hello world", "02715")
   end
 end
