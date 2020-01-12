@@ -2,6 +2,10 @@ require './lib/crypto_tool'
 
 class Encoder < CryptoTool
 
+  def random_key
+    rand.to_s[2..6]
+  end
+
   def encrypt(message, key = nil, date = nil)
     date = today if date.nil?
     shifts = shifts(keys(key), offset(date))
