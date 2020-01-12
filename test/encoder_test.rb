@@ -37,13 +37,13 @@ class EncoderTest < Minitest::Test
     assert_equal "g", @encoder.caesar_shift("g", 0)
   end
 
-  def test_it_can_return_encryption_info
+  def test_it_can_report_info
     expected = {
       encryption: "ai",
       key: "02715",
       date: "040895"
     }
-    assert_equal expected, @encoder.encryption_info("ai", "02715", "040895")
+    assert_equal expected, @encoder.report(:encryption, "ai", "02715", "040895")
   end
 
   #to-do: implement handling no date/key
