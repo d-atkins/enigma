@@ -13,6 +13,12 @@ class EncoderTest < Minitest::Test
     assert_instance_of Encoder, @encoder
   end
 
+  def test_it_can_generate_a_5_character_random_key
+    random_key = @encoder.random_key
+    assert_instance_of String, random_key
+    assert_equal 5, random_key.length
+  end
+
   def test_it_can_set_keys
     assert_equal ["02", "27", "71", "15"], @encoder.keys("02715")
   end
@@ -45,7 +51,7 @@ class EncoderTest < Minitest::Test
       key: "02715",
       date: "040895"
     }
-    
+
     assert_equal expected, @encoder.report(:encryption, "ai", "02715", "040895")
   end
 
