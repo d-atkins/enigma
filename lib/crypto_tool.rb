@@ -20,4 +20,8 @@ class CryptoTool
     index = @whitelist.index(character.downcase)
     index ? @whitelist.rotate(shift)[index] : character
   end
+
+  def shift_message(message, shift)
+    message.split('').map {|char| caesar_shift(char, shift)}.join
+  end
 end
