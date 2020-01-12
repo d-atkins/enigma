@@ -66,7 +66,7 @@ class EncoderTest < Minitest::Test
     assert_equal expected, @encoder.encrypt("hello world", "02715", "040895")
   end
 
-  def test_it_can_with_no_date_argument
+  def test_it_can_encrypt_with_no_date_argument
     dummy_time = Time.parse("2020-1-12")
     Time.stubs(:now).returns(dummy_time)
     expected = {
