@@ -77,4 +77,15 @@ class EncoderTest < Minitest::Test
 
     assert_equal expected, @encoder.encrypt("hello world", "02715")
   end
+
+  def test_it_can_encrypt_with_no_key_or_date_argument
+    @encoder.stubs(:random_key).returns("02715")
+    expected = {
+      encryption: "nib udmcxpu",
+      key: "02715",
+      date: "120120"
+    }
+
+    assert_equal expected, @encoder.encrypt("hello world")
+  end
 end
