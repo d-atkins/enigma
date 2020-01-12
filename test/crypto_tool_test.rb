@@ -36,4 +36,10 @@ class CryptoToolTest < Minitest::Test
     assert_equal "d", @crypto_tool.caesar_shift("z", 815)
     assert_equal "g", @crypto_tool.caesar_shift("g", 0)
   end
+
+  def test_it_can_shift_a_message
+    assert_equal "ifmmp,axpsme!", @crypto_tool.shift_message("Hello, world!", 1)
+    assert_equal "gdkkn,zvnqkc!", @crypto_tool.shift_message("Hello, world!", -1)
+    assert_equal "hello, world!", @crypto_tool.shift_message("Hello, world!", 0)
+  end
 end
