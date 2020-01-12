@@ -6,6 +6,8 @@ require 'mocha/minitest'
 class EncoderTest < Minitest::Test
 
   def setup
+    dummy_time = Time.parse("2020-1-12")
+    Time.stubs(:now).returns(dummy_time)
     @encoder = Encoder.new
   end
 
@@ -67,8 +69,6 @@ class EncoderTest < Minitest::Test
   end
 
   def test_it_can_encrypt_with_no_date_argument
-    dummy_time = Time.parse("2020-1-12")
-    Time.stubs(:now).returns(dummy_time)
     expected = {
       encryption: "nib udmcxpu",
       key: "02715",
