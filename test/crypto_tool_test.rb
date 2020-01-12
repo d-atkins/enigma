@@ -40,8 +40,17 @@ class CryptoToolTest < Minitest::Test
   def test_it_can_caesar_shift_all_characters_of_a_message
     shifts = [3, 27, 73, 20]
     unshifts = [-3, -27, -73, -20]
-    
+
     assert_equal "keder ohulw", @crypto_tool.shift_all("hello world", shifts)
     assert_equal "hello world", @crypto_tool.shift_all("keder ohulw", unshifts)
+  end
+
+  def test_it_can_format_a_report
+    expected = {
+      encryption: "ai",
+      key: "02715",
+      date: "040895"
+    }
+    assert_equal expected, @crypto_tool.report(:encryption, "ai", "02715", "040895")
   end
 end
