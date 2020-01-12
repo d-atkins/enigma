@@ -59,6 +59,7 @@ class CryptoToolTest < Minitest::Test
       key: "02715",
       date: "040895"
     }
+    
     assert_equal expected, @crypto_tool.report(:encryption, "ai", "02715", "040895")
   end
 end

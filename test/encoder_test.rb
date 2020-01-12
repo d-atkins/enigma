@@ -45,6 +45,7 @@ class EncoderTest < Minitest::Test
       key: "02715",
       date: "040895"
     }
+    
     assert_equal expected, @encoder.report(:encryption, "ai", "02715", "040895")
   end
 
@@ -55,6 +56,7 @@ class EncoderTest < Minitest::Test
       key: "02715",
       date: "040895"
     }
+
     assert_equal expected, @encoder.encrypt("hello world", "02715", "040895")
   end
 
@@ -66,6 +68,7 @@ class EncoderTest < Minitest::Test
       key: "02715",
       date: "120120"
     }
+
     assert_equal expected, @encoder.encrypt("hello world", "02715")
   end
 end
