@@ -1,4 +1,4 @@
-class EnigmaEncoder
+class Encoder
 
   def initialize
     @whitelist = ('a'..'z').to_a << ' '

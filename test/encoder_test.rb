@@ -1,14 +1,14 @@
 require_relative "test_helper"
-require "./lib/enigma_encoder"
+require "./lib/encoder"
 
-class EnigmaEncoderTest < Minitest::Test
+class EncoderTest < Minitest::Test
 
   def setup
-    @encoder = EnigmaEncoder.new
+    @encoder = Encoder.new
   end
 
   def test_it_exists
-    assert_instance_of EnigmaEncoder, @encoder
+    assert_instance_of Encoder, @encoder
   end
 
   def test_it_can_set_keys
