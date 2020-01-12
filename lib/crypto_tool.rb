@@ -28,4 +28,8 @@ class CryptoTool
       caesar_shift(character, shifts[0])
     end.join
   end
+
+  def report(type, message, key, date)
+    {type => message, key: key, date: date}
+  end
 end
