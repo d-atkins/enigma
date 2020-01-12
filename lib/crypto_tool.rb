@@ -1,0 +1,3 @@
+class CryptoTool
+
+end
