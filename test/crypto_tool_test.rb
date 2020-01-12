@@ -1,5 +1,7 @@
 require_relative "test_helper"
 require './lib/crypto_tool'
+require 'time'
+require 'mocha/minitest'
 
 class CryptoToolTest < Minitest::Test
 
@@ -9,6 +11,12 @@ class CryptoToolTest < Minitest::Test
 
   def test_it_exists
     assert_instance_of CryptoTool, @crypto_tool
+  end
+
+  def test_it_can_get_todays_date
+    dummy_time = Time.parse("2020-1-1")
+    Time.stubs(:now).returns(dummy_time)
+    assert_equal "010120", @crypto_tool.today
   end
 
   def test_it_can_set_keys
