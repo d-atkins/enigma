@@ -1,7 +1,13 @@
+require 'date'
+
 class CryptoTool
 
   def initialize
     @whitelist = ('a'..'z').to_a << ' '
+  end
+
+  def today
+    Time.now.strftime("%d/%m/%y").delete('/')
   end
 
   def keys(key)
