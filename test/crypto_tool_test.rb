@@ -1,4 +1,4 @@
-require_relative "test_helper"
+require_relative 'test_helper'
 require './lib/crypto_tool'
 require 'time'
 require 'mocha/minitest'
