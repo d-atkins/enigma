@@ -6,11 +6,11 @@ date = ARGV[3]
 
 handle = File.open(ARGV[0], "r")
 
-message = handle.read
+ciphertext = handle.read
 
 handle.close
 
-decrypted_info = enigma.decrypt(message, key, date)
+decrypted_info = enigma.decrypt(ciphertext, key, date)
 
 writer = File.open(ARGV[1], "w")
 
