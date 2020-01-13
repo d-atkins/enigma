@@ -11,6 +11,10 @@ class EncoderTest < Minitest::Test
     @encoder = Encoder.new
   end
 
+  def test_it_can_get_todays_date
+    assert_equal "120120", @encoder.today
+  end
+
   def test_it_exists
     assert_instance_of Encoder, @encoder
   end
