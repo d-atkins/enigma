@@ -10,4 +10,12 @@ class Enigma
     @decoder = Decoder.new
     @cracker = Cracker.new
   end
+
+  def encrypt(message, key = nil, date = nil)
+    @encoder.encrypt(message, key, date)
+  end
+
+  def decrypt(message, key, date = nil)
+    @decoder.decrypt(message, key, date)
+  end
 end
