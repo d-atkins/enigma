@@ -12,8 +12,8 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_has_attributes
-    assert_instance_of EnigmaEncoder, @enigma.encoder
-    assert_instance_of EnigmaDecoder, @enigma.decoder
-    assert_instance_of EnigmaCracker, @enigma.cracker
+    assert_instance_of Encoder, @enigma.encoder
+    assert_instance_of Decoder, @enigma.decoder
+    assert_instance_of Cracker, @enigma.cracker
   end
 end

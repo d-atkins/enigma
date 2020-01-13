@@ -1,14 +1,24 @@
-require_relative "test_helper"
-require "./lib/enigma_encoder"
+require_relative 'test_helper'
+require './lib/encoder'
+require 'time'
+require 'mocha/minitest'
 
-class EnigmaEncoderTest < Minitest::Test
+class EncoderTest < Minitest::Test
 
   def setup
-    @encoder = EnigmaEncoder.new
+    dummy_time = Time.parse("2020-1-12")
+    Time.stubs(:now).returns(dummy_time)
+    @encoder = Encoder.new
   end
 
   def test_it_exists
-    assert_instance_of EnigmaEncoder, @encoder
+    assert_instance_of Encoder, @encoder
+  end
+
+  def test_it_can_generate_a_5_character_random_key
+    random_key = @encoder.random_key
+    assert_instance_of String, random_key
+    assert_equal 5, random_key.length
   end
 
   def test_it_can_set_keys
@@ -37,22 +47,44 @@ class EnigmaEncoderTest < Minitest::Test
     assert_equal "g", @encoder.caesar_shift("g", 0)
   end
 
-  def test_it_can_return_encryption_info
+  def test_it_can_report_info
     expected = {
       encryption: "ai",
       key: "02715",
       date: "040895"
     }
-    assert_equal expected, @encoder.encryption_info("ai", "02715", "040895")
+
+    assert_equal expected, @encoder.report(:encryption, "ai", "02715", "040895")
   end
 
-  #to-do: implement handling no date/key
   def test_it_can_encrypt
     expected = {
       encryption: "keder ohulw",
       key: "02715",
       date: "040895"
     }
+
     assert_equal expected, @encoder.encrypt("hello world", "02715", "040895")
+  end
+
+  def test_it_can_encrypt_with_no_date_argument
+    expected = {
+      encryption: "nib udmcxpu",
+      key: "02715",
+      date: "120120"
+    }
+
+    assert_equal expected, @encoder.encrypt("hello world", "02715")
+  end
+
+  def test_it_can_encrypt_with_no_key_or_date_argument
+    @encoder.stubs(:random_key).returns("02715")
+    expected = {
+      encryption: "nib udmcxpu",
+      key: "02715",
+      date: "120120"
+    }
+
+    assert_equal expected, @encoder.encrypt("hello world")
   end
 end

@@ -1,13 +1,13 @@
-require './lib/enigma_encoder'
-require './lib/enigma_decoder'
-require './lib/enigma_cracker'
+require './lib/encoder'
+require './lib/decoder'
+require './lib/cracker'
 
 class Enigma
   attr_reader :encoder, :decoder, :cracker
 
   def initialize
-    @encoder = EnigmaEncoder.new
-    @decoder = EnigmaDecoder.new
-    @cracker = EnigmaCracker.new
+    @encoder = Encoder.new
+    @decoder = Decoder.new
+    @cracker = Cracker.new
   end
 end
