@@ -1,4 +1,0 @@
-Hello, world... I am a message. Thank you for reading.
-
-peace suckas
- end
