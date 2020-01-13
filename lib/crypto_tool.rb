@@ -28,10 +28,10 @@ class CryptoTool
   end
 
   def shift_all(message, shifts)
-    shifts.rotate!(-1)
     message.split('').map do |character|
+      shifted_character = caesar_shift(character, shifts[0])
       shifts.rotate!
-      caesar_shift(character, shifts[0])
+      shifted_character
     end.join
   end
 
