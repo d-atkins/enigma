@@ -29,11 +29,11 @@ class CrackerTest < Minitest::Test
     assert_equal [14, 5, 5, 8], @cracker.shifts(ciphertext)
   end
 
-  def test_it_can_get_base_keys
+  def test_it_can_get_root_keys
     shifts = [14, 5, 5, 8]
     offset = @cracker.offset("291018")
 
-    assert_equal [8, 2, 3, 4], @cracker.base_keys(shifts, offset)
+    assert_equal [8, 2, 3, 4], @cracker.root_keys(shifts, offset)
   end
 
   def test_it_can_do_a_full_shift_on_a_key
@@ -47,7 +47,7 @@ class CrackerTest < Minitest::Test
   end
 
   def test_it_can_get_potential_keys
-    base_keys = [8, 2, 3, 4]
+    root_keys = [8, 2, 3, 4]
     expected = [
       ["08", "35", "62", "89"],
       ["02", "29", "56", "83"],
@@ -55,12 +55,12 @@ class CrackerTest < Minitest::Test
       ["04", "31", "58", "85"]
     ]
 
-    assert_equal expected, @cracker.potential_keys(base_keys)
+    assert_equal expected, @cracker.potential_keys(root_keys)
   end
 
   def test_it_can_get_256_potential_key_combinations
-    base_keys = [8, 2, 3, 4]
-    potential_keys = @cracker.potential_keys(base_keys)
+    root_keys = [8, 2, 3, 4]
+    potential_keys = @cracker.potential_keys(root_keys)
 
     assert_equal 256, @cracker.all_combinations(potential_keys).length
   end
@@ -71,8 +71,8 @@ class CrackerTest < Minitest::Test
   end
 
   def test_it_can_get_an_array_of_valid_keys
-    base_keys = [8, 2, 3, 4]
-    potential_keys = @cracker.potential_keys(base_keys)
+    root_keys = [8, 2, 3, 4]
+    potential_keys = @cracker.potential_keys(root_keys)
     all_potential = @cracker.all_combinations(potential_keys)
 
     assert_equal [["08", "83", "30", "04"]], @cracker.valid_keys(all_potential)
