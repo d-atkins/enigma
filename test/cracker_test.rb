@@ -112,25 +112,23 @@ class CrackerTest < Minitest::Test
     assert_equal "08304", @cracker.prepare_key("vjqtbeaweqihssi", "291018")
   end
 
-  # def test_it_can_crack
-  #   skip
-  #   expected = {
-  #     decryption: "hello world",
-  #     key: "08304",
-  #     date: "291018"
-  #   }
-  #
-  #   assert_equal expected, @cracker.crack("vjqtbeaweqihssi", "291018")
-  # end
+  def test_it_can_crack
+    expected = {
+      decryption: "hello world end",
+      key: "08304",
+      date: "291018"
+    }
 
-  # def test_it_can_crack_with_no_date_argument
-  #   skip
-  #   expected = {
-  #     decryption: "hello world",
-  #     key: "02715",
-  #     date: "120120"
-  #   }
-  #
-  #   assert_equal expected, @cracker.crack("nib udmcxpu")
-  # end
+    assert_equal expected, @cracker.crack("vjqtbeaweqihssi", "291018")
+  end
+
+  def test_it_can_crack_with_no_date_argument
+    expected = {
+      decryption: "hello world end",
+      key: "08304",
+      date: "291018"
+    }
+
+    assert_equal expected, @cracker.crack("vjqtbeaweqihssi")
+  end
 end
