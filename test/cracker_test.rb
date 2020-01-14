@@ -19,12 +19,6 @@ class CrackerTest < Minitest::Test
     assert_equal "120120", @cracker.today
   end
 
-  #update
-  def test_it_can_get_keys
-    skip
-    assert_equal ["02", "27", "71", "15"], @cracker.keys("02715")
-  end
-
   def test_it_can_set_offset
     assert_equal ["1", "0", "2", "5"], @cracker.offset("040895")
   end
@@ -35,6 +29,19 @@ class CrackerTest < Minitest::Test
     cipher_length = ciphertext.length
 
     assert_equal [14, 5, 5, 8], @cracker.shifts(cipher_length, cipher_end)
+  end
+
+  def test_it_can_get_base_keys
+    shifts = [14, 5, 5, 8]
+    offset = @cracker.offset("120120")
+
+    assert_equal [10, 1, 5, 8], @cracker.base_keys(shifts, offset)
+  end
+
+  #to-do: update
+  def test_it_can_get_keys
+    skip
+    assert_equal ["02", "27", "71", "15"], @cracker.keys("02715")
   end
 
   def test_it_can_caesar_shift
