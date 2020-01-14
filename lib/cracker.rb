@@ -30,15 +30,15 @@ class Cracker < Decoder
     end
   end
 
-  def all_potential_key_combinations(key_arrays)
+  def all_combinations(key_arrays)
     key_arrays[0].product(key_arrays[1], key_arrays[2], key_arrays[3])
   end
 
-  def chain_together?(combination)
+  def chains_together?(combination)
     combination.each_cons(2).all? {|char1, char2| char1[1] == char2[0]}
   end
 
-  def working_key_combinations(all_combos)
-    all_combos.find_all {|combination| chain_together?(combination)}
+  def valid_keys(all_combos)
+    all_combos.find_all {|combination| chains_together?(combination)}
   end
 end
