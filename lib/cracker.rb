@@ -24,8 +24,10 @@ class Cracker < Decoder
 
   def potential_keys(base_keys)
     base_keys.map do |key|
-      keys = [key]
-      keys << full_shift(keys.last) until full_shift(keys.last) > 99
+      keys = [key_to_string(key)]
+      until full_shift(keys.last.to_i) > 99 do
+        keys << key_to_string(full_shift(keys.last.to_i))
+      end
       keys
     end
   end

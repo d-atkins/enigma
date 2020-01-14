@@ -49,7 +49,6 @@ class CrackerTest < Minitest::Test
   end
 
   def test_it_can_get_potential_keys
-    skip
     base_keys = [10, 1, 5, 8]
     expected = [
       ["10", "37", "64", "91"],
@@ -97,25 +96,25 @@ class CrackerTest < Minitest::Test
     assert_equal expected, @cracker.report(:decryption, "ai", "02715", "040895")
   end
 
-  def test_it_can_crack
-    skip
-    expected = {
-      decryption: "hello world",
-      key: "08304",
-      date: "291018"
-    }
-
-    assert_equal expected, @cracker.crack("vjqtbeaweqihssi", "291018")
-  end
-
-  def test_it_can_crack_with_no_date_argument
-    skip
-    expected = {
-      decryption: "hello world",
-      key: "02715",
-      date: "120120"
-    }
-
-    assert_equal expected, @cracker.crack("nib udmcxpu")
-  end
+  # def test_it_can_crack
+  #   skip
+  #   expected = {
+  #     decryption: "hello world",
+  #     key: "08304",
+  #     date: "291018"
+  #   }
+  #
+  #   assert_equal expected, @cracker.crack("vjqtbeaweqihssi", "291018")
+  # end
+  #
+  # def test_it_can_crack_with_no_date_argument
+  #   skip
+  #   expected = {
+  #     decryption: "hello world",
+  #     key: "02715",
+  #     date: "120120"
+  #   }
+  #
+  #   assert_equal expected, @cracker.crack("nib udmcxpu")
+  # end
 end
