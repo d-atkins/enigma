@@ -42,9 +42,21 @@ class CrackerTest < Minitest::Test
     assert_equal 30, @cracker.full_shift(3)
   end
 
+  def test_it_can_convert_key_to_string
+    assert_equal "03", @cracker.key_to_string(3)
+    assert_equal "42", @cracker.key_to_string(42)
+    assert_equal "00", @cracker.key_to_string(0)
+  end
+
   def test_it_can_get_potential_keys
+    skip
     base_keys = [10, 1, 5, 8]
-    expected = [[10, 37, 64, 91],[1, 28, 55, 82],[5, 32, 59, 86],[8, 35, 62, 89]]
+    expected = [
+      ["10", "37", "64", "91"],
+      ["01", "28", "55", "82"],
+      ["05", "32", "59", "86"],
+      ["08", "35", "62", "89"]
+    ]
 
     assert_equal expected, @cracker.potential_keys(base_keys)
   end
@@ -56,11 +68,13 @@ class CrackerTest < Minitest::Test
     assert_equal 256, @cracker.all_potential_key_combinations(potential_keys).length
   end
 
-  #to-do: update
-  def test_it_can_get_keys
-    skip
-    assert_equal ["02", "27", "71", "15"], @cracker.keys("02715")
-  end
+  # def test_it_can_get_an_array_of_working_key_combinations
+  #   base_keys = [10, 1, 5, 8]
+  #   potential_keys = @cracker.potential_keys(base_keys)
+  #   all_potential = @cracker.all_potential_key_combinations(potential_keys)
+  #
+  #   assert_equal ["?"], @cracker.working_key_combinations(all_potential)
+  # end
 
   def test_it_can_caesar_shift
     assert_equal "m", @cracker.caesar_shift("l", 1)
