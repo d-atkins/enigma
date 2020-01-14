@@ -108,8 +108,8 @@ class CrackerTest < Minitest::Test
     assert_equal "08304", @cracker.derive_key(["08", "83", "30", "04"])
   end
 
-  def test_it_can_prepare_a_key_from_ciphertext_and_date
-    assert_equal "08304", @cracker.prepare_key("vjqtbeaweqihssi", "291018")
+  def test_it_can_prepare_a_key
+    assert_equal "08304", @cracker.prepare_key("vjqtbeaweqihssi", "291018", [14, 5, 5, 8])
   end
 
   def test_it_can_crack
