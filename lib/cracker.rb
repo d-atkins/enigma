@@ -24,6 +24,7 @@ class Cracker < Decoder
 
   def potential_keys(base_keys)
     base_keys.map do |key|
+      # maybe a reduce would work here
       keys = [key_to_string(key)]
       until full_shift(keys.last.to_i) > 99 do
         keys << key_to_string(full_shift(keys.last.to_i))
@@ -36,9 +37,13 @@ class Cracker < Decoder
     potential_keys[0].product(potential_keys[1], potential_keys[2], potential_keys[3])
   end
 
+  def chain_together?(combination)
+    combination.each_cons(2).all? {|char1, char2| char1[1] == char2[0]}
+  end
+
   def working_key_combinations(all_potential_key_combinations)
     all_potential_key_combinations.find_all do |combination|
-      combination.each_cons(2).all? {|first_char, second_char| first_char[1] == second_char[0]}
+      chain_together?(combination)
     end
   end
 end
