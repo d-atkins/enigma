@@ -99,6 +99,10 @@ class CrackerTest < Minitest::Test
     assert_equal expected, @cracker.report(:decryption, "ai", "02715", "040895")
   end
 
+  def test_it_can_return_one_valid_key
+    assert_equal "63093", @cracker.keys(["63093", "90366"])
+  end
+
   def test_it_can_derive_a_key_from_keys
     assert_equal "08304", @cracker.derive_key(["08", "83", "30", "04"])
   end
