@@ -91,4 +91,12 @@ class EncoderTest < Minitest::Test
 
     assert_equal expected, @encoder.encrypt("hello world")
   end
+
+  def test_two_keys_can_generate_same_ciphertext
+    example1 = @encoder.encrypt("hello world", "90366", "040895")
+    example2 = @encoder.encrypt("hello world", "63093", "040895")
+
+    assert_equal true, example1[:encryption] == example2[:encryption]
+    assert_equal true, example1[:key] != example2[:key]
+  end
 end
