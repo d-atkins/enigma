@@ -49,6 +49,13 @@ class CrackerTest < Minitest::Test
     assert_equal expected, @cracker.potential_keys(base_keys)
   end
 
+  def test_it_can_get_256_potential_key_combinations
+    base_keys = [10, 1, 5, 8]
+    potential_keys = @cracker.potential_keys(base_keys)
+
+    assert_equal 256, @cracker.all_potential_key_combinations(potential_keys).length
+  end
+
   #to-do: update
   def test_it_can_get_keys
     skip
