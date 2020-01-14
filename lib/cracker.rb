@@ -33,7 +33,7 @@ class Cracker < Decoder
   end
 
   def all_potential_key_combinations(potential_keys)
-    potential_keys[0].product(potential_keys[0], potential_keys[1], potential_keys[2])
+    potential_keys[0].product(potential_keys[1], potential_keys[2], potential_keys[3])
   end
 
   # def working_key_combinations(all_potential_key_combinations)
