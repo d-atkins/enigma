@@ -18,6 +18,10 @@ class Cracker < Decoder
     key + @whitelist.length
   end
 
+  def key_to_string(key)
+    key.to_s.length < 2 ? key.to_s.prepend("0") : key.to_s
+  end
+
   def potential_keys(base_keys)
     base_keys.map do |key|
       keys = [key]
@@ -30,5 +34,9 @@ class Cracker < Decoder
     potential_keys[0].product(potential_keys[0], potential_keys[1], potential_keys[2])
   end
 
-
+  # def working_key_combinations(all_potential_key_combinations)
+  #   all_potential_key_combinations.find_all do |combination|
+  #     combination.each_cons(2).all? {|first_char, second_char| first_char[1] == second_char[0]}
+  #   end
+  # end
 end
