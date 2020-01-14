@@ -24,7 +24,7 @@ class CryptoTool
 
   def caesar_shift(character, shift)
     index = @whitelist.index(character.downcase)
-    index ? @whitelist.rotate(shift)[index] : character
+    index ? @whitelist.rotate(shift % @whitelist.length)[index] : character
   end
 
   def shift_all(message, shifts)
