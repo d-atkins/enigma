@@ -49,4 +49,10 @@ class Cracker < Decoder
   def derive_key(keys)
     keys.reduce("") {|acc, key| acc << key[0]} << keys.last[-1]
   end
+
+  def prepare_key(ciphertext, date)
+    root_keys = root_keys(shifts(ciphertext), offset(date))
+    valid_keys = valid_keys(all_combinations(potential_keys(root_keys)))
+    derive_key(keys(valid_keys))
+  end
 end
