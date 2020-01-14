@@ -65,7 +65,7 @@ class DecoderTest < Minitest::Test
     assert_equal expected, @decoder.decrypt("keder ohulw", "02715", "040895")
   end
 
-  def test_it_can_encrypt_with_no_date_argument
+  def test_it_can_decrypt_with_no_date_argument
     expected = {
       decryption: "hello world",
       key: "02715",
