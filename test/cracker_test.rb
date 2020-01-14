@@ -38,6 +38,17 @@ class CrackerTest < Minitest::Test
     assert_equal [10, 1, 5, 8], @cracker.base_keys(shifts, offset)
   end
 
+  def test_it_can_do_a_full_shift_on_a_key
+    assert_equal 30, @cracker.full_shift(3)
+  end
+
+  def test_it_can_get_potential_keys
+    base_keys = [10, 1, 5, 8]
+    expected = [[10, 37, 64, 91],[1, 28, 55, 82],[5, 32, 59, 86],[8, 35, 62, 89]]
+
+    assert_equal expected, @cracker.potential_keys(base_keys)
+  end
+
   #to-do: update
   def test_it_can_get_keys
     skip
