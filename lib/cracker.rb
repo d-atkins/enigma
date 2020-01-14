@@ -2,12 +2,12 @@ require './lib/decoder'
 
 class Cracker < Decoder
 
-  def shifts(cipher_length, cipher_end, known_end = " end")
-    cipher_end.split('').zip(known_end.split('')).map do |cipher_char, known_char|
+  def shifts(ciphertext, known_end = " end")
+    last_four = ciphertext[-known_end.length..-1].split('')
+    last_four.zip(known_end.split('')).map do |cipher_char, known_char|
       shift = @whitelist.index(cipher_char) - @whitelist.index(known_char)
-      shift += @whitelist.length if shift.negative?
-      shift
-    end.rotate(-(cipher_length % known_end.length))
+      shift.negative? ? (shift + @whitelist.length) : shift
+    end.rotate(-(ciphertext.length % known_end.length))
   end
 
   def base_keys(shifts, offset)

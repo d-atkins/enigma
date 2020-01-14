@@ -25,10 +25,8 @@ class CrackerTest < Minitest::Test
 
   def test_it_can_get_shifts
     ciphertext = "vjqtbeaweqihssi"
-    cipher_end = ciphertext[-4..-1]
-    cipher_length = ciphertext.length
 
-    assert_equal [14, 5, 5, 8], @cracker.shifts(cipher_length, cipher_end)
+    assert_equal [14, 5, 5, 8], @cracker.shifts(ciphertext)
   end
 
   def test_it_can_get_base_keys
