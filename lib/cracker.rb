@@ -41,4 +41,8 @@ class Cracker < Decoder
   def valid_keys(all_combinations)
     all_combinations.find_all {|combination| chains_together?(combination)}
   end
+
+  def derive_key(keys)
+    keys.reduce("") {|acc, key| acc << key[0]} << keys.last[-1]
+  end
 end
