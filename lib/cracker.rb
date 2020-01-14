@@ -52,7 +52,14 @@ class Cracker < Decoder
 
   def prepare_key(ciphertext, date)
     root_keys = root_keys(shifts(ciphertext), offset(date))
-    valid_keys = valid_keys(all_combinations(potential_keys(root_keys)))
-    derive_key(keys(valid_keys))
+    working_keys = valid_keys(all_combinations(potential_keys(root_keys)))
+    derive_key(keys(working_keys))
+  end
+
+  def crack(ciphertext, date = today)
+    key = prepare_key(ciphertext, date)
+    inverse_shifts = shifts(ciphertext).map{|shift| -shift}
+    decryption = shift_all(ciphertext, inverse_shifts)
+    report(:decryption, decryption, key, date)
   end
 end
