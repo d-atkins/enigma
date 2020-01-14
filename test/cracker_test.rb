@@ -126,4 +126,14 @@ class CrackerTest < Minitest::Test
 
     assert_equal expected, @cracker.crack("vjqtbeaweqihssi")
   end
+
+  def test_it_can_find_multiple_keys_with_crack
+    expected = {
+      decryption: "?!?!?! end",
+      key: ["63093", "90366"],
+      date: "040895"
+    }
+
+    assert_equal expected, @cracker.crack("?!?!?!kvxg", "040895")
+  end
 end

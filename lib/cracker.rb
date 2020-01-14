@@ -54,7 +54,8 @@ class Cracker < Decoder
 
   def crack(ciphertext, date = today)
     keys = prepare_keys(ciphertext, date)
-    keys = keys.first if keys.length == 1
-    decrypt(ciphertext, keys, date)
+    info = decrypt(ciphertext, keys.first, date)
+    info[:key] = keys if keys.length > 1
+    info
   end
 end
