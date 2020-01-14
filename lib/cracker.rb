@@ -13,4 +13,16 @@ class Cracker < Decoder
   def base_keys(shifts, offset)
     shifts.zip(offset).map {|shift, subtrahend| shift - subtrahend.to_i}
   end
+
+  def full_shift(key)
+    key + @whitelist.length
+  end
+
+  def potential_keys(base_keys)
+    base_keys.map do |key|
+      keys = [key]
+      keys << full_shift(keys.last) until full_shift(keys.last) > 99
+      keys
+    end
+  end
 end
