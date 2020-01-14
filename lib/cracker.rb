@@ -41,9 +41,7 @@ class Cracker < Decoder
     combination.each_cons(2).all? {|char1, char2| char1[1] == char2[0]}
   end
 
-  def working_key_combinations(all_potential_key_combinations)
-    all_potential_key_combinations.find_all do |combination|
-      chain_together?(combination)
-    end
+  def working_key_combinations(all_combos)
+    all_combos.find_all {|combination| chain_together?(combination)}
   end
 end
