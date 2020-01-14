@@ -6,7 +6,7 @@ require 'mocha/minitest'
 class CrackerTest < Minitest::Test
 
   def setup
-    dummy_time = Time.parse("2020-1-12")
+    dummy_time = Time.parse("2018-10-29")
     Time.stubs(:now).returns(dummy_time)
     @cracker = Cracker.new
   end
@@ -16,11 +16,11 @@ class CrackerTest < Minitest::Test
   end
 
   def test_it_can_get_todays_date
-    assert_equal "120120", @cracker.today
+    assert_equal "291018", @cracker.today
   end
 
   def test_it_can_set_offset
-    assert_equal ["1", "0", "2", "5"], @cracker.offset("040895")
+    assert_equal ["6", "3", "2", "4"], @cracker.offset("291018")
   end
 
   def test_it_can_get_shifts
@@ -33,9 +33,9 @@ class CrackerTest < Minitest::Test
 
   def test_it_can_get_base_keys
     shifts = [14, 5, 5, 8]
-    offset = @cracker.offset("120120")
+    offset = @cracker.offset("291018")
 
-    assert_equal [10, 1, 5, 8], @cracker.base_keys(shifts, offset)
+    assert_equal [8, 2, 3, 4], @cracker.base_keys(shifts, offset)
   end
 
   def test_it_can_do_a_full_shift_on_a_key
@@ -49,26 +49,26 @@ class CrackerTest < Minitest::Test
   end
 
   def test_it_can_get_potential_keys
-    base_keys = [10, 1, 5, 8]
+    base_keys = [8, 2, 3, 4]
     expected = [
-      ["10", "37", "64", "91"],
-      ["01", "28", "55", "82"],
-      ["05", "32", "59", "86"],
-      ["08", "35", "62", "89"]
+      ["08", "35", "62", "89"],
+      ["02", "29", "56", "83"],
+      ["03", "30", "57", "84"],
+      ["04", "31", "58", "85"]
     ]
 
     assert_equal expected, @cracker.potential_keys(base_keys)
   end
 
   def test_it_can_get_256_potential_key_combinations
-    base_keys = [10, 1, 5, 8]
+    base_keys = [8, 2, 3, 4]
     potential_keys = @cracker.potential_keys(base_keys)
 
     assert_equal 256, @cracker.all_potential_key_combinations(potential_keys).length
   end
 
   # def test_it_can_get_an_array_of_working_key_combinations
-  #   base_keys = [10, 1, 5, 8]
+  #   base_keys = [8, 2, 3, 4]
   #   potential_keys = @cracker.potential_keys(base_keys)
   #   all_potential = @cracker.all_potential_key_combinations(potential_keys)
   #
