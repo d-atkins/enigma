@@ -55,8 +55,8 @@ class DecoderTest < Minitest::Test
     assert_equal expected, @decoder.report(:decryption, "ai", "02715", "040895")
   end
 
-  def test_it_can_reverse_shifts
-    assert_equal [-1, -2, -3, -4], @decoder.reverse_shifts([1,2,3,4])
+  def test_it_can_invert_shifts
+    assert_equal [-1, -2, -3, -4], @decoder.invert_shifts([1,2,3,4])
   end
 
   def test_it_can_decrypt
