@@ -18,4 +18,8 @@ class Enigma
   def decrypt(message, key, date = @decoder.today)
     @decoder.decrypt(message, key, date)
   end
+
+  def crack(message, date = @cracker.today)
+    @cracker.crack(message, date)
+  end
 end
