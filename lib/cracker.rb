@@ -5,9 +5,9 @@ class Cracker < Decoder
   def shifts(cipher_length, cipher_end, known_end = " end")
     cipher_end.split('').zip(known_end.split('')).map do |cipher_char, known_char|
       shift = @whitelist.index(cipher_char) - @whitelist.index(known_char)
-      shift += 27 if shift < 0
+      shift += @whitelist.length if shift.negative?
       shift
-    end.rotate(-(cipher_length % 4))
+    end.rotate(-(cipher_length % known_end.length))
   end
 
   def base_keys(shifts, offset)
@@ -24,12 +24,9 @@ class Cracker < Decoder
 
   def potential_keys(base_keys)
     base_keys.map do |key|
-      # maybe a reduce would work here
-      keys = [key_to_string(key)]
-      until full_shift(keys.last.to_i) > 99 do
-        keys << key_to_string(full_shift(keys.last.to_i))
-      end
-      keys
+      keys = [key]
+      keys << full_shift(keys.last) until full_shift(keys.last) > 99
+      keys.map {|potential_key| key_to_string(potential_key)}
     end
   end
 
