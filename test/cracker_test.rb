@@ -67,13 +67,13 @@ class CrackerTest < Minitest::Test
     assert_equal 256, @cracker.all_potential_key_combinations(potential_keys).length
   end
 
-  # def test_it_can_get_an_array_of_working_key_combinations
-  #   base_keys = [8, 2, 3, 4]
-  #   potential_keys = @cracker.potential_keys(base_keys)
-  #   all_potential = @cracker.all_potential_key_combinations(potential_keys)
-  #
-  #   assert_equal ["?"], @cracker.working_key_combinations(all_potential)
-  # end
+  def test_it_can_get_an_array_of_working_key_combinations
+    base_keys = [8, 2, 3, 4]
+    potential_keys = @cracker.potential_keys(base_keys)
+    all_potential = @cracker.all_potential_key_combinations(potential_keys)
+
+    assert_equal [["08", "83", "30", "04"]], @cracker.working_key_combinations(all_potential)
+  end
 
   def test_it_can_caesar_shift
     assert_equal "m", @cracker.caesar_shift("l", 1)
