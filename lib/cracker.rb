@@ -46,14 +46,15 @@ class Cracker < Decoder
     keys.reduce("") {|acc, key| acc << key[0]} << keys.last[-1]
   end
 
-  def prepare_key(ciphertext, date)
+  def prepare_keys(ciphertext, date)
     root_keys = root_keys(reverse_shifts(ciphertext), offset(date))
     working_keys = valid_keys(all_combinations(potential_keys(root_keys)))
-    derive_key(working_keys.first)
+    working_keys.map {|keys| derive_key(keys)}
   end
 
   def crack(ciphertext, date = today)
-    key = prepare_key(ciphertext, date)
-    decrypt(ciphertext, key, date)
+    keys = prepare_keys(ciphertext, date)
+    keys = keys.first if keys.length == 1
+    decrypt(ciphertext, keys, date)
   end
 end
