@@ -99,6 +99,10 @@ class CrackerTest < Minitest::Test
     assert_equal expected, @cracker.report(:decryption, "ai", "02715", "040895")
   end
 
+  def test_it_can_derive_a_key_from_keys
+    assert_equal "08304", @cracker.derive_key(["08", "83", "30", "04"])
+  end
+
   # def test_it_can_crack
   #   skip
   #   expected = {
@@ -109,7 +113,7 @@ class CrackerTest < Minitest::Test
   #
   #   assert_equal expected, @cracker.crack("vjqtbeaweqihssi", "291018")
   # end
-  #
+
   # def test_it_can_crack_with_no_date_argument
   #   skip
   #   expected = {
