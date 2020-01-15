@@ -50,6 +50,7 @@ class CryptoToolTest < Minitest::Test
     unshifts = [-3, -27, -73, -20]
 
     assert_equal "keder ohulw", @crypto_tool.shift_all("hello world", shifts)
+    assert_equal "ahex(o)d0?!?!cw...oj[o[w\n", @crypto_tool.shift_all("hEeE(l)l0?!?! w...or[l[d\n", shifts)
     assert_equal "hello world", @crypto_tool.shift_all("keder ohulw", unshifts)
   end
 

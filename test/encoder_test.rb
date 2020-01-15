@@ -69,6 +69,14 @@ class EncoderTest < Minitest::Test
     }
 
     assert_equal expected, @encoder.encrypt("hello world", "02715", "040895")
+
+    expected = {
+      encryption: "ke(eo)gtz*jeg?",
+      key: "02715",
+      date: "040895"
+    }
+
+    assert_equal expected, @encoder.encrypt("he(ll)o w*rld?", "02715", "040895")
   end
 
   def test_it_can_encrypt_with_no_date_argument
@@ -79,17 +87,33 @@ class EncoderTest < Minitest::Test
     }
 
     assert_equal expected, @encoder.encrypt("hello world", "02715")
-  end
 
-  def test_it_can_encrypt_with_no_key_or_date_argument
-    @encoder.stubs(:random_key).returns("02715")
     expected = {
-      encryption: "nib udmcxpu",
+      encryption: "nib u,qkuvbs\nlz\nnm",
       key: "02715",
       date: "120120"
     }
 
+    assert_equal expected, @encoder.encrypt("hello, world\nhi\nhi", "02715")
+  end
+
+  def test_it_can_encrypt_with_no_key_or_date_argument
+    @encoder.stubs(:random_key).returns("10482")
+    expected = {
+      encryption: "vmfmbhqpety",
+      key: "10482",
+      date: "120120"
+    }
+
     assert_equal expected, @encoder.encrypt("hello world")
+
+    expected = {
+      encryption: "@(bfl{*$)!@}?)",
+      key: "10482",
+      date: "120120"
+    }
+
+    assert_equal expected, @encoder.encrypt("@(hey{*$)!@}?)")
   end
 
   def test_two_keys_can_generate_same_ciphertext
