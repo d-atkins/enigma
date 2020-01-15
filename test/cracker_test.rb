@@ -122,6 +122,14 @@ class CrackerTest < Minitest::Test
     }
 
     assert_equal expected, @cracker.crack("vjqtbeaweqihssi", "291018")
+
+    expected = {
+      decryption: "c@n't t0uch th1s end",
+      key: ["28475", "55748"],
+      date: "291018"
+    }
+
+    assert_equal expected, @cracker.crack("j@i' fo0aicy n1qgkib", "291018")
   end
 
   def test_it_can_crack_with_no_date_argument
@@ -132,6 +140,14 @@ class CrackerTest < Minitest::Test
     }
 
     assert_equal expected, @cracker.crack("vjqtbeaweqihssi")
+
+    expected = {
+      decryption: "c@n't t0uch th1s end",
+      key: ["28475", "55748"],
+      date: "291018"
+    }
+
+    assert_equal expected, @cracker.crack("j@i' fo0aicy n1qgkib")
   end
 
   def test_it_can_find_multiple_keys_with_crack

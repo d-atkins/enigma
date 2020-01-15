@@ -67,6 +67,14 @@ class DecoderTest < Minitest::Test
     }
 
     assert_equal expected, @decoder.decrypt("keder ohulw", "02715", "040895")
+
+    expected = {
+      decryption: "he(ll)o w*rld?",
+      key: "02715",
+      date: "040895"
+    }
+
+    assert_equal expected, @decoder.decrypt("ke(eo)gtz*jeg?", "02715", "040895")
   end
 
   def test_it_can_decrypt_with_no_date_argument
@@ -77,5 +85,13 @@ class DecoderTest < Minitest::Test
     }
 
     assert_equal expected, @decoder.decrypt("nib udmcxpu", "02715")
+
+    expected = {
+      decryption: "hello, world\nhi\nhi",
+      key: "02715",
+      date: "120120"
+    }
+
+    assert_equal expected, @decoder.decrypt("nib u,qkuvbs\nlz\nnm", "02715")
   end
 end
