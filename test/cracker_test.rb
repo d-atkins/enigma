@@ -114,6 +114,24 @@ class CrackerTest < Minitest::Test
     assert_equal ["08304"], @cracker.prepare_keys("vjqtbeaweqihssi", "291018")
   end
 
+  def test_it_can_decrypt
+    expected = {
+      decryption: "hello world",
+      key: "02715",
+      date: "040895"
+    }
+
+    assert_equal expected, @cracker.decrypt("keder ohulw", "02715", "040895")
+
+    expected = {
+      decryption: "he(ll)o w*rld?",
+      key: "02715",
+      date: "040895"
+    }
+
+    assert_equal expected, @cracker.decrypt("ke(eo)gtz*jeg?", "02715", "040895")
+  end
+
   def test_it_can_crack
     expected = {
       decryption: "hello world end",
