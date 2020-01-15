@@ -45,7 +45,7 @@ class CryptoToolTest < Minitest::Test
     assert_equal "g", @crypto_tool.caesar_shift("g", 0)
   end
 
-  def test_it_can_caesar_shift_all_characters_of_a_message
+  def test_it_can_shift_all_characters_of_a_message
     shifts = [3, 27, 73, 20]
     unshifts = [-3, -27, -73, -20]
 

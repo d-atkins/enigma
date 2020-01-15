@@ -7,7 +7,10 @@ class Decoder < CryptoTool
   end
 
   def decrypt(ciphertext, key, date = today)
-    inverted_shifts = invert_shifts(shifts(codes(key), offsets(date)))
+    codes = codes(key)
+    offsets = offsets(date)
+    shifts = shifts(codes, offsets)
+    inverted_shifts = invert_shifts(shifts)
     decryption = shift_all(ciphertext, inverted_shifts)
     report(:decryption, decryption, key, date)
   end

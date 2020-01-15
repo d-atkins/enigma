@@ -2,7 +2,7 @@ require './lib/decoder'
 
 class Cracker < Decoder
 
-  def reverse_shifts(ciphertext, known_end = " end")
+  def cracked_shifts(ciphertext, known_end = " end")
     last_four = ciphertext[-known_end.length..-1].split('')
     last_four.zip(known_end.split('')).map do |cipher_char, known_char|
       shift = @whitelist.index(cipher_char) - @whitelist.index(known_char)
@@ -12,8 +12,8 @@ class Cracker < Decoder
 
   def root_codes(shifts, offsets)
     shifts.zip(offsets).map do |shift, offset|
-      diff = shift - offset.to_i
-      diff > 0 ? diff : full_shift(diff)
+      root_code = shift - offset.to_i
+      root_code > 0 ? root_code : full_shift(root_code)
     end
   end
 
@@ -50,7 +50,7 @@ class Cracker < Decoder
   end
 
   def prepare_keys(ciphertext, date)
-    root_codes = root_codes(reverse_shifts(ciphertext), offsets(date))
+    root_codes = root_codes(cracked_shifts(ciphertext), offsets(date))
     working_codes = valid_codes(all_combinations(potential_codes(root_codes)))
     working_codes.map {|codes| key_from_codes(codes)}
   end
