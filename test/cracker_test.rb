@@ -24,7 +24,7 @@ class CrackerTest < Minitest::Test
   end
 
   def test_it_can_set_shifts
-    keys = @cracker.keys("02715")
+    keys = @cracker.codes("02715")
     offsets = @cracker.offsets("040895")
 
     assert_equal [3, 27, 73, 20], @cracker.shifts(keys, offsets)
@@ -36,25 +36,25 @@ class CrackerTest < Minitest::Test
     assert_equal [14, 5, 5, 8], @cracker.reverse_shifts(ciphertext)
   end
 
-  def test_it_can_get_root_keys
+  def test_it_can_get_root_codes
     shifts = [14, 5, 5, 8]
     offsets = @cracker.offsets("291018")
 
-    assert_equal [8, 2, 3, 4], @cracker.root_keys(shifts, offsets)
+    assert_equal [8, 2, 3, 4], @cracker.root_codes(shifts, offsets)
   end
 
   def test_it_can_do_a_full_shift_on_a_key
     assert_equal 30, @cracker.full_shift(3)
   end
 
-  def test_it_can_convert_key_to_string
-    assert_equal "03", @cracker.key_to_string(3)
-    assert_equal "42", @cracker.key_to_string(42)
-    assert_equal "00", @cracker.key_to_string(0)
+  def test_it_can_convert_code_to_string
+    assert_equal "03", @cracker.code_to_string(3)
+    assert_equal "42", @cracker.code_to_string(42)
+    assert_equal "00", @cracker.code_to_string(0)
   end
 
-  def test_it_can_get_potential_keys
-    root_keys = [8, 2, 3, 4]
+  def test_it_can_get_potential_codes
+    root_codes = [8, 2, 3, 4]
     expected = [
       ["08", "35", "62", "89"],
       ["02", "29", "56", "83"],
@@ -62,14 +62,14 @@ class CrackerTest < Minitest::Test
       ["04", "31", "58", "85"]
     ]
 
-    assert_equal expected, @cracker.potential_keys(root_keys)
+    assert_equal expected, @cracker.potential_codes(root_codes)
   end
 
   def test_it_can_get_256_potential_key_combinations
-    root_keys = [8, 2, 3, 4]
-    potential_keys = @cracker.potential_keys(root_keys)
+    root_codes = [8, 2, 3, 4]
+    potential_codes = @cracker.potential_codes(root_codes)
 
-    assert_equal 256, @cracker.all_combinations(potential_keys).length
+    assert_equal 256, @cracker.all_combinations(potential_codes).length
   end
 
   def test_it_can_determine_if_an_array_chains_together
@@ -78,9 +78,9 @@ class CrackerTest < Minitest::Test
   end
 
   def test_it_can_get_an_array_of_valid_keys
-    root_keys = [8, 2, 3, 4]
-    potential_keys = @cracker.potential_keys(root_keys)
-    all_potential = @cracker.all_combinations(potential_keys)
+    root_codes = [8, 2, 3, 4]
+    potential_codes = @cracker.potential_codes(root_codes)
+    all_potential = @cracker.all_combinations(potential_codes)
 
     assert_equal [["08", "83", "30", "04"]], @cracker.valid_keys(all_potential)
   end

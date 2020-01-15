@@ -10,7 +10,7 @@ class CryptoTool
     Time.now.strftime("%d/%m/%y").delete('/')
   end
 
-  def keys(key)
+  def codes(key)
     key.split('').each_cons(2).map {|a,b| a + b}
   end
 
@@ -18,8 +18,8 @@ class CryptoTool
     (date.to_i**2).to_s[-4..-1].split('')
   end
 
-  def shifts(keys, offsets)
-    keys.zip(offsets).map {|key, off| key.to_i + off.to_i }
+  def shifts(codes, offsets)
+    codes.zip(offsets).map {|key, off| key.to_i + off.to_i }
   end
 
   def caesar_shift(character, shift)

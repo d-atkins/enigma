@@ -10,46 +10,46 @@ class Cracker < Decoder
     end.rotate(-(ciphertext.length % known_end.length))
   end
 
-  def root_keys(shifts, offsets)
+  def root_codes(shifts, offsets)
     shifts.zip(offsets).map {|shift, offset| shift - offset.to_i}
   end
 
-  def full_shift(key)
-    key + @whitelist.length
+  def full_shift(code)
+    code + @whitelist.length
   end
 
-  def key_to_string(key)
-    key.to_s.length < 2 ? key.to_s.prepend("0") : key.to_s
+  def code_to_string(code)
+    code.to_s.length < 2 ? code.to_s.prepend("0") : code.to_s
   end
 
-  def potential_keys(root_keys)
-    root_keys.map do |key|
-      keys = [key]
-      keys << full_shift(keys.last) until full_shift(keys.last) > 99
-      keys.map {|potential_key| key_to_string(potential_key)}
+  def potential_codes(root_codes)
+    root_codes.map do |code|
+      codes = [code]
+      codes << full_shift(codes.last) until full_shift(codes.last) > 99
+      codes.map {|potential_code| code_to_string(potential_code)}
     end
   end
 
-  def all_combinations(key_arrays)
-    key_arrays[0].product(key_arrays[1], key_arrays[2], key_arrays[3])
+  def all_combinations(code_arrays)
+    code_arrays[0].product(code_arrays[1], code_arrays[2], code_arrays[3])
   end
 
   def chains_together?(combination)
-    combination.each_cons(2).all? {|char1, char2| char1[1] == char2[0]}
+    combination.each_cons(2).all? {|code1, code2| code1[1] == code2[0]}
   end
 
   def valid_keys(all_combinations)
     all_combinations.find_all {|combination| chains_together?(combination)}
   end
 
-  def derive_key(keys)
-    keys.reduce("") {|acc, key| acc << key[0]} << keys.last[-1]
+  def derive_key(codes)
+    codes.reduce("") {|acc, key| acc << key[0]} << codes.last[-1]
   end
 
   def prepare_keys(ciphertext, date)
-    root_keys = root_keys(reverse_shifts(ciphertext), offsets(date))
-    working_keys = valid_keys(all_combinations(potential_keys(root_keys)))
-    working_keys.map {|keys| derive_key(keys)}
+    root_codes = root_codes(reverse_shifts(ciphertext), offsets(date))
+    working_codes = valid_keys(all_combinations(potential_codes(root_codes)))
+    working_codes.map {|keys| derive_key(keys)}
   end
 
   def crack(ciphertext, date = today)

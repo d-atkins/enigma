@@ -19,8 +19,8 @@ class DecoderTest < Minitest::Test
     assert_equal "120120", @decoder.today
   end
 
-  def test_it_can_set_keys
-    assert_equal ["02", "27", "71", "15"], @decoder.keys("02715")
+  def test_it_can_set_codes
+    assert_equal ["02", "27", "71", "15"], @decoder.codes("02715")
   end
 
   def test_it_can_set_offsets
@@ -28,10 +28,10 @@ class DecoderTest < Minitest::Test
   end
 
   def test_it_can_set_shifts
-    keys = @decoder.keys("02715")
+    codes = @decoder.codes("02715")
     offsets = @decoder.offsets("040895")
 
-    assert_equal [3, 27, 73, 20], @decoder.shifts(keys, offsets)
+    assert_equal [3, 27, 73, 20], @decoder.shifts(codes, offsets)
   end
 
   def test_it_can_caesar_shift

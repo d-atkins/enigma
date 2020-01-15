@@ -25,8 +25,8 @@ class EncoderTest < Minitest::Test
     assert_equal 5, random_key.length
   end
 
-  def test_it_can_set_keys
-    assert_equal ["02", "27", "71", "15"], @encoder.keys("02715")
+  def test_it_can_set_codes
+    assert_equal ["02", "27", "71", "15"], @encoder.codes("02715")
   end
 
   def test_it_can_set_offsets
@@ -34,10 +34,10 @@ class EncoderTest < Minitest::Test
   end
 
   def test_it_can_set_shifts
-    keys = @encoder.keys("02715")
+    codes = @encoder.codes("02715")
     offsets = @encoder.offsets("040895")
 
-    assert_equal [3, 27, 73, 20], @encoder.shifts(keys, offsets)
+    assert_equal [3, 27, 73, 20], @encoder.shifts(codes, offsets)
   end
 
   def test_it_can_caesar_shift
