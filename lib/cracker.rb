@@ -38,7 +38,7 @@ class Cracker < Decoder
     combination.each_cons(2).all? {|code1, code2| code1[1] == code2[0]}
   end
 
-  def valid_keys(all_combinations)
+  def valid_codes(all_combinations)
     all_combinations.find_all {|combination| chains_together?(combination)}
   end
 
@@ -48,7 +48,7 @@ class Cracker < Decoder
 
   def prepare_keys(ciphertext, date)
     root_codes = root_codes(reverse_shifts(ciphertext), offsets(date))
-    working_codes = valid_keys(all_combinations(potential_codes(root_codes)))
+    working_codes = valid_codes(all_combinations(potential_codes(root_codes)))
     working_codes.map {|codes| key_from_codes(codes)}
   end
 

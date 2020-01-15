@@ -77,12 +77,12 @@ class CrackerTest < Minitest::Test
     assert_equal false, @cracker.chains_together?(["08", "73", "30", "04"])
   end
 
-  def test_it_can_get_an_array_of_valid_keys
+  def test_it_can_get_an_array_of_valid_codes
     root_codes = [8, 2, 3, 4]
     potential_codes = @cracker.potential_codes(root_codes)
     all_potential = @cracker.all_combinations(potential_codes)
 
-    assert_equal [["08", "83", "30", "04"]], @cracker.valid_keys(all_potential)
+    assert_equal [["08", "83", "30", "04"]], @cracker.valid_codes(all_potential)
   end
 
   def test_it_can_caesar_shift
