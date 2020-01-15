@@ -6,7 +6,7 @@
 - (+) inheritance
 - (+/-) broken into logical components... at least in _my_ mind...
 #### Ruby Conventions and Mechanics - `3~4`
-- (+) good naming conventions
+- (+) _probably_ good naming conventions
 - (+) consistent syntax
 - (+) methods under 10 lines
 - (+/-) hash is implemented, but only to report info
