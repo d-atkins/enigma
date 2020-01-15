@@ -12,8 +12,8 @@ class Cracker < Decoder
 
   def root_codes(shifts, offsets)
     shifts.zip(offsets).map do |shift, offset|
-      diff = shift - offset.to_i
-      diff > 0 ? diff : full_shift(diff)
+      root_code = shift - offset.to_i
+      root_code > 0 ? root_code : full_shift(root_code)
     end
   end
 
