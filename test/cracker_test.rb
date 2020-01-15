@@ -19,8 +19,15 @@ class CrackerTest < Minitest::Test
     assert_equal "291018", @cracker.today
   end
 
-  def test_it_can_set_offset
-    assert_equal ["6", "3", "2", "4"], @cracker.offset("291018")
+  def test_it_can_set_offsets
+    assert_equal ["6", "3", "2", "4"], @cracker.offsets("291018")
+  end
+
+  def test_it_can_set_shifts
+    keys = @cracker.keys("02715")
+    offsets = @cracker.offsets("040895")
+
+    assert_equal [3, 27, 73, 20], @cracker.shifts(keys, offsets)
   end
 
   def test_it_can_get_reverse_shifts
@@ -31,9 +38,9 @@ class CrackerTest < Minitest::Test
 
   def test_it_can_get_root_keys
     shifts = [14, 5, 5, 8]
-    offset = @cracker.offset("291018")
+    offsets = @cracker.offsets("291018")
 
-    assert_equal [8, 2, 3, 4], @cracker.root_keys(shifts, offset)
+    assert_equal [8, 2, 3, 4], @cracker.root_keys(shifts, offsets)
   end
 
   def test_it_can_do_a_full_shift_on_a_key

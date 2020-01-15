@@ -23,15 +23,15 @@ class CryptoToolTest < Minitest::Test
     assert_equal ["02", "27", "71", "15"], @crypto_tool.keys("02715")
   end
 
-  def test_it_can_set_offset
-    assert_equal ["1", "0", "2", "5"], @crypto_tool.offset("040895")
+  def test_it_can_set_offsets
+    assert_equal ["1", "0", "2", "5"], @crypto_tool.offsets("040895")
   end
 
   def test_it_can_set_shifts
     keys = @crypto_tool.keys("02715")
-    offset = @crypto_tool.offset("040895")
+    offsets = @crypto_tool.offsets("040895")
 
-    assert_equal [3, 27, 73, 20], @crypto_tool.shifts(keys, offset)
+    assert_equal [3, 27, 73, 20], @crypto_tool.shifts(keys, offsets)
   end
 
   def test_it_can_caesar_shift
@@ -59,7 +59,7 @@ class CryptoToolTest < Minitest::Test
       key: "02715",
       date: "040895"
     }
-    
+
     assert_equal expected, @crypto_tool.report(:encryption, "ai", "02715", "040895")
   end
 end

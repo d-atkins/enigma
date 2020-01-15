@@ -10,8 +10,8 @@ class Cracker < Decoder
     end.rotate(-(ciphertext.length % known_end.length))
   end
 
-  def root_keys(shifts, offset)
-    shifts.zip(offset).map {|shift, subtrahend| shift - subtrahend.to_i}
+  def root_keys(shifts, offsets)
+    shifts.zip(offsets).map {|shift, offset| shift - offset.to_i}
   end
 
   def full_shift(key)
@@ -47,7 +47,7 @@ class Cracker < Decoder
   end
 
   def prepare_keys(ciphertext, date)
-    root_keys = root_keys(reverse_shifts(ciphertext), offset(date))
+    root_keys = root_keys(reverse_shifts(ciphertext), offsets(date))
     working_keys = valid_keys(all_combinations(potential_keys(root_keys)))
     working_keys.map {|keys| derive_key(keys)}
   end

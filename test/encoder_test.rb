@@ -29,15 +29,15 @@ class EncoderTest < Minitest::Test
     assert_equal ["02", "27", "71", "15"], @encoder.keys("02715")
   end
 
-  def test_it_can_set_offset
-    assert_equal ["1", "0", "2", "5"], @encoder.offset("040895")
+  def test_it_can_set_offsets
+    assert_equal ["1", "0", "2", "5"], @encoder.offsets("040895")
   end
 
   def test_it_can_set_shifts
     keys = @encoder.keys("02715")
-    offset = @encoder.offset("040895")
+    offsets = @encoder.offsets("040895")
 
-    assert_equal [3, 27, 73, 20], @encoder.shifts(keys, offset)
+    assert_equal [3, 27, 73, 20], @encoder.shifts(keys, offsets)
   end
 
   def test_it_can_caesar_shift
