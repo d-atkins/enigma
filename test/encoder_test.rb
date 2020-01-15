@@ -51,6 +51,15 @@ class EncoderTest < Minitest::Test
     assert_equal "g", @encoder.caesar_shift("g", 0)
   end
 
+  def test_it_can_shift_all_characters_of_a_message
+    shifts = [3, 27, 73, 20]
+    unshifts = [-3, -27, -73, -20]
+
+    assert_equal "keder ohulw", @encoder.shift_all("hello world", shifts)
+    assert_equal "ahex(o)d0?!?!cw...oj[o[w\n", @encoder.shift_all("hEeE(l)l0?!?! w...or[l[d\n", shifts)
+    assert_equal "hello world", @encoder.shift_all("keder ohulw", unshifts)
+  end
+
   def test_it_can_report_info
     expected = {
       encryption: "ai",

@@ -45,6 +45,15 @@ class DecoderTest < Minitest::Test
     assert_equal "g", @decoder.caesar_shift("g", 0)
   end
 
+  def test_it_can_shift_all_characters_of_a_message
+    shifts = [3, 27, 73, 20]
+    unshifts = [-3, -27, -73, -20]
+
+    assert_equal "keder ohulw", @decoder.shift_all("hello world", shifts)
+    assert_equal "ahex(o)d0?!?!cw...oj[o[w\n", @decoder.shift_all("hEeE(l)l0?!?! w...or[l[d\n", shifts)
+    assert_equal "hello world", @decoder.shift_all("keder ohulw", unshifts)
+  end
+
   def test_it_can_report_info
     expected = {
       decryption: "ai",
