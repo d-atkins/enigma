@@ -8,7 +8,9 @@ class Encoder < CryptoTool
   end
 
   def encrypt(message, key = random_key, date = today)
-    shifts = shifts(codes(key), offsets(date))
+    codes = codes(key)
+    offsets = offsets(date)
+    shifts = shifts(codes, offsets)
     encryption = shift_all(message, shifts)
     report(:encryption, encryption, key, date)
   end
