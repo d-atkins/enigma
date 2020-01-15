@@ -30,10 +30,10 @@ class CrackerTest < Minitest::Test
     assert_equal [3, 27, 73, 20], @cracker.shifts(keys, offsets)
   end
 
-  def test_it_can_get_reverse_shifts
+  def test_it_can_get_cracked_shifts
     ciphertext = "vjqtbeaweqihssi"
 
-    assert_equal [14, 5, 5, 8], @cracker.reverse_shifts(ciphertext)
+    assert_equal [14, 5, 5, 8], @cracker.cracked_shifts(ciphertext)
   end
 
   def test_it_can_get_root_codes
