@@ -76,7 +76,7 @@ class EncoderTest < Minitest::Test
       date: "040895"
     }
 
-    assert_equal expected, @encoder.encrypt("he(ll)o w*rld?", "02715", "040895")
+    assert_equal expected, @encoder.encrypt("He(ll)O w*RLd?", "02715", "040895")
   end
 
   def test_it_can_encrypt_with_no_date_argument
@@ -94,7 +94,7 @@ class EncoderTest < Minitest::Test
       date: "120120"
     }
 
-    assert_equal expected, @encoder.encrypt("hello, world\nhi\nhi", "02715")
+    assert_equal expected, @encoder.encrypt("Hello, world\nhi\nHI", "02715")
   end
 
   def test_it_can_encrypt_with_no_key_or_date_argument
@@ -113,7 +113,7 @@ class EncoderTest < Minitest::Test
       date: "120120"
     }
 
-    assert_equal expected, @encoder.encrypt("@(hey{*$)!@}?)")
+    assert_equal expected, @encoder.encrypt("@(hEy{*$)!@}?)")
   end
 
   def test_two_keys_can_generate_same_ciphertext
