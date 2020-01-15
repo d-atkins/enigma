@@ -43,7 +43,7 @@ class Cracker < Decoder
   end
 
   def key_from_codes(codes)
-    codes.reduce("") {|acc, key| acc << key[0]} << codes.last[-1]
+    codes.reduce("") {|acc, code| acc << code[0]} << codes.last[-1]
   end
 
   def prepare_keys(ciphertext, date)
