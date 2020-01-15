@@ -42,14 +42,14 @@ class Cracker < Decoder
     all_combinations.find_all {|combination| chains_together?(combination)}
   end
 
-  def derive_key(codes)
+  def key_from_codes(codes)
     codes.reduce("") {|acc, key| acc << key[0]} << codes.last[-1]
   end
 
   def prepare_keys(ciphertext, date)
     root_codes = root_codes(reverse_shifts(ciphertext), offsets(date))
     working_codes = valid_keys(all_combinations(potential_codes(root_codes)))
-    working_codes.map {|keys| derive_key(keys)}
+    working_codes.map {|codes| key_from_codes(codes)}
   end
 
   def crack(ciphertext, date = today)

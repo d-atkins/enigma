@@ -107,7 +107,7 @@ class CrackerTest < Minitest::Test
   end
 
   def test_it_can_derive_a_key_from_keys
-    assert_equal "08304", @cracker.derive_key(["08", "83", "30", "04"])
+    assert_equal "08304", @cracker.key_from_codes(["08", "83", "30", "04"])
   end
 
   def test_it_can_prepare_key
