@@ -19,7 +19,7 @@ class CryptoTool
   end
 
   def shifts(codes, offsets)
-    codes.zip(offsets).map {|key, offset| key.to_i + offset.to_i }
+    codes.zip(offsets).map {|key, offset| key.to_i + offset.to_i}
   end
 
   def caesar_shift(character, shift)
