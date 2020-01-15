@@ -11,11 +11,15 @@ class Enigma
     @cracker = Cracker.new
   end
 
-  def encrypt(message, key = nil, date = nil)
+  def encrypt(message, key = @encoder.random_key, date = @encoder.today)
     @encoder.encrypt(message, key, date)
   end
 
-  def decrypt(message, key, date = nil)
+  def decrypt(message, key, date = @decoder.today)
     @decoder.decrypt(message, key, date)
+  end
+
+  def crack(message, date = @cracker.today)
+    @cracker.crack(message, date)
   end
 end

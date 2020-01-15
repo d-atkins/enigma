@@ -7,10 +7,8 @@ class Encoder < CryptoTool
     key.split('').map {|char| rand(10).to_s}.join
   end
 
-  def encrypt(message, key = nil, date = nil)
-    date = today if date.nil?
-    key = random_key if key.nil?
-    shifts = shifts(keys(key), offset(date))
+  def encrypt(message, key = random_key, date = today)
+    shifts = shifts(codes(key), offsets(date))
     encryption = shift_all(message, shifts)
     report(:encryption, encryption, key, date)
   end

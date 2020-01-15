@@ -19,19 +19,19 @@ class DecoderTest < Minitest::Test
     assert_equal "120120", @decoder.today
   end
 
-  def test_it_can_set_keys
-    assert_equal ["02", "27", "71", "15"], @decoder.keys("02715")
+  def test_it_can_set_codes
+    assert_equal ["02", "27", "71", "15"], @decoder.codes("02715")
   end
 
-  def test_it_can_set_offset
-    assert_equal ["1", "0", "2", "5"], @decoder.offset("040895")
+  def test_it_can_set_offsets
+    assert_equal ["1", "0", "2", "5"], @decoder.offsets("040895")
   end
 
   def test_it_can_set_shifts
-    keys = @decoder.keys("02715")
-    offset = @decoder.offset("040895")
+    codes = @decoder.codes("02715")
+    offsets = @decoder.offsets("040895")
 
-    assert_equal [3, 27, 73, 20], @decoder.shifts(keys, offset)
+    assert_equal [3, 27, 73, 20], @decoder.shifts(codes, offsets)
   end
 
   def test_it_can_caesar_shift
@@ -55,6 +55,10 @@ class DecoderTest < Minitest::Test
     assert_equal expected, @decoder.report(:decryption, "ai", "02715", "040895")
   end
 
+  def test_it_can_invert_shifts
+    assert_equal [-1, -2, -3, -4], @decoder.invert_shifts([1,2,3,4])
+  end
+
   def test_it_can_decrypt
     expected = {
       decryption: "hello world",
@@ -65,7 +69,7 @@ class DecoderTest < Minitest::Test
     assert_equal expected, @decoder.decrypt("keder ohulw", "02715", "040895")
   end
 
-  def test_it_can_encrypt_with_no_date_argument
+  def test_it_can_decrypt_with_no_date_argument
     expected = {
       decryption: "hello world",
       key: "02715",
